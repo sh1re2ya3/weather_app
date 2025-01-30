@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <mat-card class="p-4" style="max-width: 400px; width: 100%;">
+    <h3 mat-card-title class="text-center mb-4">{{ isLoginMode ? 'Login' : 'Signup' }}</h3>
+    <mat-card-content>
+      <!-- Login Form -->
+      <form *ngIf="isLoginMode" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <mat-form-field class="w-100 mb-3" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" placeholder="Enter your username" />
+          <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+            Username is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-4" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter your password" />
+          <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password is required.
+          </mat-error>
+        </mat-form-field>
+        <!-- Show Invalid Credentials Error -->
+        <mat-error *ngIf="loginError">
+          Invalid username or password
+        </mat-error>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+            Login
+          </button>
+          <a class="text-primary" (click)="toggleMode()">Sign up here</a>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form *ngIf="!isLoginMode" [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
+        <mat-form-field class="w-100 mb-3" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" placeholder="Choose a username" />
+          <mat-error *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+            Username is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-3" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Choose a password" />
+          <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+            Password must match the required pattern (e.g., User&#64;123).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-4" appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm your password" />
+          <mat-error *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+            Passwords must match.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+            Sign Up
+          </button>
+          <a class="text-primary" (click)="toggleMode()">Back to Login</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

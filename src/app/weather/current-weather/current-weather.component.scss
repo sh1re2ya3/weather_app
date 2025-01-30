@@ -1,0 +1,32 @@
+/* Apply styles only for Current Weather page */
+.current-weather-page .mat-card {
+    display: flex;
+    flex-direction: row; /* This will apply the horizontal layout */
+    justify-content: space-between;
+  }
+  
+  @media (min-width: 768px) {
+    .current-weather-page .mat-card .row {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .current-weather-page .mat-card .col-md-6 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    /* For smaller screens (below 768px) */
+    .current-weather-page .mat-card .row {
+      display: block; /* Stack the contents vertically */
+    }
+  
+    .current-weather-page .mat-card .col-12 {
+      margin-bottom: 15px;
+    }
+  }
+  

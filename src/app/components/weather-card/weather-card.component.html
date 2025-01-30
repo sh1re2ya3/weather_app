@@ -1,0 +1,20 @@
+<mat-card class="weather-card m-2" [ngStyle]="{'background-image': 'url(https://openweathermap.org/img/wn/' + (weatherData?.weather[0]?.icon) + '@2x.png)'}">
+  <mat-card-header>
+    <!-- Display date if it exists -->
+    <p>{{ weatherData?.dt | date: 'mediumDate' }}</p>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Weather Details -->
+    <div>
+      <p><strong>Day Temperature:</strong> {{ weatherData?.temp?.day||weatherData?.main?.temp | number: '1.0-0' }} °C</p>
+      <p><strong>Night Temperature:</strong> {{ weatherData?.temp?.night||weatherData?.main?.temp_min | number: '1.0-0' }} °C</p>
+      <p><strong>Weather:</strong> {{ weatherData?.weather?.[0]?.description }}</p>
+      <p><strong>Humidity:</strong> {{ weatherData?.humidity||weatherData?.main?.humidity | number: '1.0-0'}} %</p>
+      <p><strong>Wind Speed:</strong> {{ weatherData?.speed||weatherData?.wind?.speed | number: '1.0-0' }} m/s</p>
+      <p><strong>Cloudiness:</strong> {{(typeof weatherData?.clouds === 'object' ? weatherData?.clouds?.all : weatherData?.clouds) || 'N/A'| number: '1.0-0'  }} %</p>
+      <p *ngIf="weatherData?.pop"><strong>Precipitation Probability:</strong> {{ weatherData?.pop | number: '1.0-0' }} %</p>
+      <p *ngIf="weatherData?.rain"> <strong>Rain:</strong> {{ weatherData?.rain | number: '1.0-0' }} mm</p>
+    </div>
+  </mat-card-content>
+</mat-card>

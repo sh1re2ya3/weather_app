@@ -1,0 +1,8 @@
+    <!-- <mat-card-title>Weather in {{ city }}</mat-card-title> -->
+    <div class="current-weather-page">
+    <app-weather-card [weatherData]="weatherData"></app-weather-card>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button mat-button (click)="navigateToForecast()">View Forecast</button>
+    </div>
